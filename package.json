@@ -1,0 +1,26 @@
+{
+  "name": "kcs-cheater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "init": "npm i -g pkg",
+    "build": "pkg ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "robotjs": "^0.6.0"
+  },
+  "bin": {
+    "kcs-cheater": "main.js"
+  },
+  "pkg": {
+    "targets": [
+      "node16-windows",
+      "node16-linux"
+    ],
+    "outputPath": "prod"
+  }
+}
