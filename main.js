@@ -1,17 +1,19 @@
 const {moveMouse, getScreenSize} = require("robotjs");
 const sleep = time => new Promise (r => {setTimeout(r, time)});
 
-const steps = 1;
+const steps = 10;
+const {width, height} = getScreenSize();
+const mid = {
+    x: width / 2,
+    y: height / 2
+}
 
 async function main(){
-    const {width, height} = getScreenSize();
-    const pos = {x: 0, y: 0};
+    const pos = {x: mid.x, y: mid.y};
     while(1){
         moveMouse(pos.x, pos.y);
-        pos.x = pos.x+steps;
-        pos.y = pos.y+steps;
-        if(pos.x == width) pos.x = 0;
-        if(pos.y == height) pos.y = 0;
+        await sleep(1000);
+        moveMouse(pos.x + steps, pos.y);
         await sleep(1000);
     }
 }
