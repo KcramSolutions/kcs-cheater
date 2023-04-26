@@ -10,13 +10,13 @@ const mid = {
 
 const header = `
 │ ┌──────────────────────────────────────────────────────┐
-├─┤  CHEATER.EXE                                         │
+├─┤  CHEATER                                             │
 │ └─────────────────────┬┬───────────────────────────────┘
 │  x  xx   /xxx  /xxxx  ││ DESC:
 │  x x    /x     x      ││  Mouse virtualization for
-│  xx     x      \xxx\  ││ prevent the state of "suspend"
-│  x x    \x         x  ││ in any laptop or the "away"
-│  x  xx   \x x  xxxx/  ││ state in Microsoft Teams.
+│  xx     x      \\xxx\\  ││ prevent the state of "suspend"
+│  x x    \\x         x  ││ in any laptop or the "away"
+│  x  xx   \\x x  xxxx/  ││ state in Microsoft Teams.
 │ ┌───────────────────┐ ││
 ├─┤VERSION:           │ ││ In this version the screen
 │ │cheater ---- 1.0.1 │ ││ will clear after execution
@@ -28,6 +28,10 @@ const header = `
 │ │ For updates check it on:                             │
 ├─┤  https://kcramsolutions.com/projects/cheater         │
 │ └──────────────────────────────────────────────────────┘
+│
+│      ┌────┐                     ┌────────┐
+└──────┤EXIT├────────────────────►│CTRL + C│
+       └────┘                     └────────┘
 `;
 
 async function main(){
@@ -41,7 +45,14 @@ async function main(){
 }
 console.clear();
 console.log(header);
-main();
-process.on("beforeExit", () => {
+process.on("SIGINT", () => {
     console.clear();
+    process.exit(0);
 })
+// process.openStdin().on("keypress", (chunk, key)=>{
+//     if(key && key.name == "c" && key.ctrl){
+//         console.clear();
+//         process.exit(0);
+//     }
+// })
+main();
