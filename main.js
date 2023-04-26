@@ -1,12 +1,34 @@
 const {moveMouse, getScreenSize} = require("robotjs");
 const sleep = time => new Promise (r => {setTimeout(r, time)});
 
-const steps = 10;
+const steps = 30;
 const {width, height} = getScreenSize();
 const mid = {
     x: width / 2,
     y: height / 2
 }
+
+const header = `
+│ ┌──────────────────────────────────────────────────────┐
+├─┤  CHEATER.EXE                                         │
+│ └─────────────────────┬┬───────────────────────────────┘
+│  x  xx   /xxx  /xxxx  ││ DESC:
+│  x x    /x     x      ││  Mouse virtualization for
+│  xx     x      \xxx\  ││ prevent the state of "suspend"
+│  x x    \x         x  ││ in any laptop or the "away"
+│  x  xx   \x x  xxxx/  ││ state in Microsoft Teams.
+│ ┌───────────────────┐ ││
+├─┤VERSION:           │ ││ In this version the screen
+│ │cheater ---- 1.0.1 │ ││ will clear after execution
+│ ├───────────────────┤ ││
+├─┤   26/04/2023      │ ││ https://kcramsolutions.com
+│ └───────────────────┘ └┘
+│
+│ ┌──────────────────────────────────────────────────────┐
+│ │ For updates check it on:                             │
+├─┤  https://kcramsolutions.com/projects/cheater         │
+│ └──────────────────────────────────────────────────────┘
+`;
 
 async function main(){
     const pos = {x: mid.x, y: mid.y};
@@ -17,17 +39,9 @@ async function main(){
         await sleep(1000);
     }
 }
-console.log("\n");
-console.log("=".repeat(50));
-console.log();
-console.log(('\tKCS Cheater V1.0.0'));
-console.log();
-console.log((' Emulate mouse input to move the cursor'));
-console.log();
-console.log((' Marck C. G. - mcarrion@kcramsolutions.com'));
-console.log();
-console.log("=".repeat(50));
-console.log();
-console.log();
-console.log('Exit with Crtl-C');
+console.clear();
+console.log(header);
 main();
+process.on("beforeExit", () => {
+    console.clear();
+})
